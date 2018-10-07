@@ -13,7 +13,10 @@ This is a future feature which will allow us to interact with automated devices 
 V0 of the product will be using siri shortcuts alongside a Flask REST API to communicate with the server.
 
 ### Update Chore Status
-1) `POST /chores/<chore identifier>/<username>`
+1) `POST /chores/<chore identifier>/<username>`\
+    Currently supported chores - 
+    1) dishes
+    2) trash
 2) Siri sends text message with update
 
 
