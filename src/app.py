@@ -1,18 +1,22 @@
 from flask import Flask
 from flask_restful import Resource, Api, reqparse
+from update_chores import update_chore
 
 app = Flask(__name__)
 api = Api(app)
-parser = reqparse.RequestParser()
 
-class UserAPI(Resource):
-    def get(self, id):
-        pass
+class Chores(Resource):
+    def post(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('identifier')
+        parser.add_argument('username')
 
-    def post(self, id):
-        pass
+        args = parser.parse_args()
+        print(args)
 
-api.add_resource(UserAPI, '/chores/<int:id>', endpoint = 'user')
+        return update_chore(args["identifier"], args["username"])
+
+api.add_resource(Chores, '/chores')
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
