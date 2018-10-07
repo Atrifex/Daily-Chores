@@ -5,6 +5,10 @@ app = Flask(__name__)
 api = Api(app)
 parser = reqparse.RequestParser()
 
+class HelloWorld(Resource):
+    def get(self):
+        return {'hello':'world'}
+
 class UserAPI(Resource):
     def get(self, id):
         pass
@@ -12,6 +16,8 @@ class UserAPI(Resource):
     def post(self, id):
         pass
 
+#To verify if server is running
+api.add_resource(HelloWorld,'/')
 api.add_resource(UserAPI, '/chores/<int:id>', endpoint = 'user')
 
 if __name__ == '__main__':
