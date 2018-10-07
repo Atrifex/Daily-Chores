@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_restful import Resource, Api, reqparse
-from update_chores import update_chore
+from update_chores import DatabaseManager
 from healthcheck import HealthCheck, EnvironmentDump
 
 app = Flask(__name__)
@@ -15,7 +15,8 @@ class Chores(Resource):
         args = parser.parse_args()
         print(args)
 
-        return update_chore(args["identifier"], args["username"])
+        db = DatabaseManager()
+        return db.update_chore(args["identifier"], args["username"])
 
 api.add_resource(Chores, '/chores')
 
